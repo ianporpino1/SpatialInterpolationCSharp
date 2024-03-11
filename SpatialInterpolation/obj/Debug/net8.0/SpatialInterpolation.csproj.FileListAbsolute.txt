@@ -1,0 +1,14 @@
+C:\Users\ianpo\projects\C# Projects\SpatialInterpolationC#\SpatialInterpolation\bin\Debug\net8.0\SpatialInterpolation.exe
+C:\Users\ianpo\projects\C# Projects\SpatialInterpolationC#\SpatialInterpolation\bin\Debug\net8.0\SpatialInterpolation.deps.json
+C:\Users\ianpo\projects\C# Projects\SpatialInterpolationC#\SpatialInterpolation\bin\Debug\net8.0\SpatialInterpolation.runtimeconfig.json
+C:\Users\ianpo\projects\C# Projects\SpatialInterpolationC#\SpatialInterpolation\bin\Debug\net8.0\SpatialInterpolation.dll
+C:\Users\ianpo\projects\C# Projects\SpatialInterpolationC#\SpatialInterpolation\bin\Debug\net8.0\SpatialInterpolation.pdb
+C:\Users\ianpo\projects\C# Projects\SpatialInterpolationC#\SpatialInterpolation\obj\Debug\net8.0\SpatialInterpolation.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ianpo\projects\C# Projects\SpatialInterpolationC#\SpatialInterpolation\obj\Debug\net8.0\SpatialInterpolation.AssemblyInfoInputs.cache
+C:\Users\ianpo\projects\C# Projects\SpatialInterpolationC#\SpatialInterpolation\obj\Debug\net8.0\SpatialInterpolation.AssemblyInfo.cs
+C:\Users\ianpo\projects\C# Projects\SpatialInterpolationC#\SpatialInterpolation\obj\Debug\net8.0\SpatialInterpolation.csproj.CoreCompileInputs.cache
+C:\Users\ianpo\projects\C# Projects\SpatialInterpolationC#\SpatialInterpolation\obj\Debug\net8.0\SpatialInterpolation.dll
+C:\Users\ianpo\projects\C# Projects\SpatialInterpolationC#\SpatialInterpolation\obj\Debug\net8.0\refint\SpatialInterpolation.dll
+C:\Users\ianpo\projects\C# Projects\SpatialInterpolationC#\SpatialInterpolation\obj\Debug\net8.0\SpatialInterpolation.pdb
+C:\Users\ianpo\projects\C# Projects\SpatialInterpolationC#\SpatialInterpolation\obj\Debug\net8.0\SpatialInterpolation.genruntimeconfig.cache
+C:\Users\ianpo\projects\C# Projects\SpatialInterpolationC#\SpatialInterpolation\obj\Debug\net8.0\ref\SpatialInterpolation.dll
