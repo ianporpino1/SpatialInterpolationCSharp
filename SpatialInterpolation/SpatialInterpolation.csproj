@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -6,5 +6,19 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="bin\Debug\net8.0\data\known_points.csv" />
+    <None Include="bin\Debug\net8.0\data\unknown_points.csv" />
+    <None Remove="data\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="data\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="data\**" />
+  </ItemGroup>
 
 </Project>
