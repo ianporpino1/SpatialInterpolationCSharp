@@ -17,7 +17,7 @@ public class SpatialInterpolation
                 sumWeights += weight;
                 sumWeightedValues += weight * z_known[j];
             }
-            z_unknown[i] = sumWeightedValues / sumWeights;
+            z_unknown.Add(sumWeightedValues / sumWeights);
         }
         return z_unknown;
     }

@@ -6,8 +6,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        string fileKnownPoints = "data/data.csv";
-
+        string fileKnownPoints = "data/known_points.csv";
         List<double> x_known = new List<double>();
         List<double> y_known = new List<double>();
         List<double> z_known = new List<double>();
