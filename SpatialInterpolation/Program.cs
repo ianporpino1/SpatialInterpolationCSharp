@@ -30,7 +30,7 @@
             Console.WriteLine("Error reading the file: " + e.Message);
         }
 
-        string fileUnknownPoints = "src/data/unknown_points.csv";
+        string fileUnknownPoints = "data/unknown_points.csv";
         List<double> x_unknown = new List<double>();
         List<double> y_unknown = new List<double>();
 
