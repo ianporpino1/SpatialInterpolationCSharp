@@ -58,11 +58,14 @@ class Program
                 List<double> z_interpolated =
                     SpatialInterpolation.InverseDistanceWeighting(x_known, y_known, z_known, subXUnknown, subYUnknown,
                         2.0);
+
+                lock (results)
+                {
                     foreach (var value in z_interpolated)
                     {
                         results.Add(value);
                     }
-                
+                }
 
             };
 
