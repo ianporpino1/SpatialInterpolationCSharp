@@ -13,21 +13,19 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ianpo\\projects\\C# Projects\\SpatialInterpolationC#\\SpatialInterpolation\\SpatialInterpolation.csproj",
+      "projectUniqueName": "C:\\Users\\ianpo\\projects\\C# Projects\\SpatialInterpolationC#\\SpatialInterpolationCSharp\\SpatialInterpolation\\SpatialInterpolation.csproj",
       "projectName": "SpatialInterpolation",
-      "projectPath": "C:\\Users\\ianpo\\projects\\C# Projects\\SpatialInterpolationC#\\SpatialInterpolation\\SpatialInterpolation.csproj",
+      "projectPath": "C:\\Users\\ianpo\\projects\\C# Projects\\SpatialInterpolationC#\\SpatialInterpolationCSharp\\SpatialInterpolation\\SpatialInterpolation.csproj",
       "packagesPath": "C:\\Users\\ianpo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ianpo\\projects\\C# Projects\\SpatialInterpolationC#\\SpatialInterpolation\\obj\\",
+      "outputPath": "C:\\Users\\ianpo\\projects\\C# Projects\\SpatialInterpolationC#\\SpatialInterpolationCSharp\\SpatialInterpolation\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\ianpo\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\ianpo\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -40,11 +38,6 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
       }
     },
     "frameworks": {

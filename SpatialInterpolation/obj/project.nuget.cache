@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "6GURMW4AAZs0qVj5n1izjqiW1hSSS3N0TDBgABpMUQy0+msTby84VRrjTEAonIjBZaFyphpn/RtAahOOT6lzSw==",
+  "dgSpecHash": "fASIwtMZZiJVQeCUc4zSMtktBfGQkFXL4dbLiTU7smjfUeat5CRC87z9j0gahCsjA3cjvTA72/ttBy5aUlx3oA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ianpo\\projects\\C# Projects\\SpatialInterpolationC#\\SpatialInterpolation\\SpatialInterpolation.csproj",
+  "projectFilePath": "C:\\Users\\ianpo\\projects\\C# Projects\\SpatialInterpolationC#\\SpatialInterpolationCSharp\\SpatialInterpolation\\SpatialInterpolation.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
