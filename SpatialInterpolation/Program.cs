@@ -10,50 +10,13 @@
         List<double> z_known = new List<double>();
         DateTime startTime = DateTime.Now;
 
-        try
-        {
-            using (StreamReader sr = new StreamReader(fileKnownPoints))
-            {
-                sr.ReadLine();
-                string line;
-                while ((line = sr.ReadLine()) != null)
-                {
-                    string[] parts = line.Split(',');
-                    x_known.Add(double.Parse(parts[0]));
-                    y_known.Add(double.Parse(parts[1]));
-                    z_known.Add(double.Parse(parts[2]));
-                }
-            }
-        }
-        catch (IOException e)
-        {
-            Console.WriteLine("Error reading the file: " + e.Message);
-        }
+        ReadPointsFromFile(fileKnownPoints, x_known, y_known, z_known);
 
         string fileUnknownPoints = "src/data/unknown_points.csv";
         List<double> x_unknown = new List<double>();
         List<double> y_unknown = new List<double>();
 
-        try
-        {
-            using (StreamReader sr = new StreamReader(fileUnknownPoints))
-            {
-                sr.ReadLine();
-                string line;
-                while ((line = sr.ReadLine()) != null)
-                {
-                    string[] parts = line.Split(',');
-                    x_unknown.Add(double.Parse(parts[0]));
-                    y_unknown.Add(double.Parse(parts[1]));
-                }
-            }
-        }
-        catch (IOException e)
-        {
-            Console.WriteLine("Error reading the file: " + e.Message);
-        }
-
-      
+        ReadPointsFromFile(fileUnknownPoints, x_unknown, y_unknown);
 
         List<double> z_interpolated = SpatialInterpolation.InverseDistanceWeighting(x_known, y_known, z_known, x_unknown, y_unknown, 2.0);
 
@@ -67,5 +30,32 @@
             Console.WriteLine(val);
         }
     }
+    static void ReadPointsFromFile(string filePath, List<double> x_list, List<double> y_list,
+        List<double> z_list = null)
+    {
+        try
+        {
+            using (StreamReader sr = new StreamReader(filePath))
+            {
+                sr.ReadLine();
+                string line;
+                while ((line = sr.ReadLine()) != null)
+                {
+                    string[] parts = line.Split(',');
+                    x_list.Add(double.Parse(parts[0]));
+                    y_list.Add(double.Parse(parts[1]));
+                    if (z_list != null)
+                    {
+                        z_list.Add(double.Parse(parts[2]));
+                    }
+                }
+            }
+        }
+        catch (IOException e)
+        {
+            Console.WriteLine("Error reading the file: " + e.Message);
+        }
+    }
+
 }
 
