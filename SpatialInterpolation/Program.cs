@@ -4,6 +4,7 @@ using System.Collections.Concurrent;
 
 class Program
 {
+    static volatile List<Point> results = new List<Point>();
     static void Main(string[] args)
     {
 
@@ -15,8 +16,6 @@ class Program
         List<Point> unknown_points = new List<Point>();
 
         ReadPointsFromFile(fileUnknownPoints, unknown_points, false);
-
-        List<Point> results = new List<Point>();
 
         DateTime startTime = DateTime.Now;
 
