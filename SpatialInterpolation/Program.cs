@@ -1,4 +1,4 @@
-﻿
+﻿﻿
 
 using System.Collections.Concurrent;
 
@@ -8,36 +8,22 @@ class Program
     {
 
         string fileKnownPoints = "data/known_points.csv";
-        List<double> x_known = new List<double>();
-        List<double> y_known = new List<double>();
-        List<double> z_known = new List<double>();
-
-        DateTime startReadingFile = DateTime.Now;
-
-        ReadPointsFromFile(fileKnownPoints, x_known, y_known, z_known);
-
-        DateTime endReadingFile = DateTime.Now;
-        TimeSpan durationReading = endReadingFile - startReadingFile;
-
-        Console.WriteLine("Tempo de execução lendo arquivo: " + durationReading.TotalSeconds + " segundos");
-        Console.WriteLine(x_known.Count);
-
+        List<Point> known_points = new List<Point>();
+        ReadPointsFromFile(fileKnownPoints, known_points, true);
 
         string fileUnknownPoints = "data/unknown_points.csv";
-        List<double> x_unknown = new List<double>();
-        List<double> y_unknown = new List<double>();
+        List<Point> unknown_points = new List<Point>();
 
-        ReadPointsFromFile(fileUnknownPoints, x_unknown, y_unknown);
+        ReadPointsFromFile(fileUnknownPoints, unknown_points, false);
 
-
-        List<double> results = new List<double>();
+        List<Point> results = new List<Point>();
 
         DateTime startTime = DateTime.Now;
 
         int numThreads = Environment.ProcessorCount;
         List<Thread> threads = new List<Thread>(numThreads);
 
-        int totalPoints = x_unknown.Count;
+        int totalPoints = unknown_points.Count;
         int pointsPerThread = totalPoints / numThreads;
         int extraPoints = totalPoints % numThreads;
 
@@ -50,15 +36,12 @@ class Program
                 endIndex++;
             }
 
-            List<double> subXUnknown = x_unknown.GetRange(startIndex, endIndex - startIndex);
-            List<double> subYUnknown = y_unknown.GetRange(startIndex, endIndex - startIndex);
+            List<Point> subUnknown = unknown_points.GetRange(startIndex, endIndex - startIndex);
+            
 
             ThreadStart threadStart = () =>
             {
-                List<double> z_interpolated =
-                    SpatialInterpolation.InverseDistanceWeighting(x_known, y_known, z_known, subXUnknown, subYUnknown,
-                        2.0);
-
+                List<Point> z_interpolated = SpatialInterpolation.InverseDistanceWeighting(known_points, subUnknown, 2.0);
                 lock (results)
                 {
                     foreach (var value in z_interpolated)
@@ -66,7 +49,6 @@ class Program
                         results.Add(value);
                     }
                 }
-
             };
 
             Thread thread = new Thread(threadStart);
@@ -92,17 +74,16 @@ class Program
         DateTime endTime = DateTime.Now;
         TimeSpan duration = endTime - startTime;
 
-        Console.WriteLine("Tempo de execução: " + duration.TotalSeconds + " segundos"); //547seg ?? 9min
+        Console.WriteLine("Tempo de execução: " + duration.TotalSeconds + " segundos"); //357seg ?? 9min
 
-        //foreach (double val in results)
-        //{
-        //Console.WriteLine(val);
-        //}
+        foreach (Point val in results)
+        {
+        	Console.WriteLine(val);
+        }
     }
     
 
-    static void ReadPointsFromFile(string filePath, List<double> x_list, List<double> y_list,
-        List<double> z_list = null)
+    static void ReadPointsFromFile(string filePath, List<Point> points, Boolean flag)
     {
         try
         {
@@ -113,12 +94,15 @@ class Program
                 while ((line = sr.ReadLine()) != null)
                 {
                     string[] parts = line.Split(',');
-                    x_list.Add(double.Parse(parts[0]));
-                    y_list.Add(double.Parse(parts[1]));
-                    if (z_list != null)
-                    {
-                        z_list.Add(double.Parse(parts[2]));
-                    }
+					Point point;
+					if(flag){
+                    	point = new Point(double.Parse(parts[0]), double.Parse(parts[1]),double.Parse(parts[2]));
+                	}
+                	else {
+                    	point = new Point(double.Parse(parts[0]), double.Parse(parts[1]));
+                	}
+
+                    points.Add(point);
                 }
             }
         }
