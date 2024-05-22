@@ -18,65 +18,14 @@ class Program
 
         ReadPointsFromFile(fileUnknownPoints, unknown_points, false);
 
-        List<Point> results = new List<Point>();
-
+        var results = unknown_points.AsParallel()
+            .Select(SpatialInterpolation.InverseDistanceWeightingFunction(known_points, 2.0))
+            .ToList();
         
-
-        int numThreads = Environment.ProcessorCount;
-        List<Thread> threads = new List<Thread>(numThreads);
-
-        int totalPoints = unknown_points.Count;
-        int pointsPerThread = totalPoints / numThreads;
-        int extraPoints = totalPoints % numThreads;
-
-        int startIndex = 0;
-        for (int i = 0; i < numThreads; i++)
-        {
-            int endIndex = startIndex + pointsPerThread;
-            if (i < extraPoints)
-            {
-                endIndex++;
-            }
-
-            List<Point> subUnknown = unknown_points.GetRange(startIndex, endIndex - startIndex);
-            
-
-            ThreadStart threadStart = () =>
-            {
-                List<Point> z_interpolated = SpatialInterpolation.InverseDistanceWeighting(known_points, subUnknown, 2.0);
-                lock (results)
-                {
-                    foreach (var value in z_interpolated)
-                    {
-                        results.Add(value);
-                    }
-                }
-            };
-
-            Thread thread = new Thread(threadStart);
-            thread.Start();
-            threads.Add(thread);
-
-            startIndex = endIndex;
-        }
-
-        foreach (Thread thread in threads)
-        {
-            try
-            {
-                thread.Join();
-            }
-            catch (ThreadInterruptedException e)
-            {
-                Console.WriteLine(e);
-            }
-        }
-
-
         DateTime endTime = DateTime.Now;
         TimeSpan duration = endTime - startTime;
 
-        Console.WriteLine("Tempo de execução: " + duration.TotalSeconds + " segundos"); //357seg ?? 9min
+        Console.WriteLine("Tempo de execução: " + duration.TotalSeconds + " segundos"); 
 
         int i1=0;
         foreach (Point val in results)
