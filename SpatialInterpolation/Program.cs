@@ -6,6 +6,8 @@ class Program
 {
     static void Main(string[] args)
     {
+        
+        DateTime startTime = DateTime.Now;
 
         string fileKnownPoints = "data/known_points.csv";
         List<Point> known_points = new List<Point>();
@@ -18,7 +20,7 @@ class Program
 
         List<Point> results = new List<Point>();
 
-        DateTime startTime = DateTime.Now;
+        
 
         int numThreads = Environment.ProcessorCount;
         List<Thread> threads = new List<Thread>(numThreads);
@@ -76,9 +78,11 @@ class Program
 
         Console.WriteLine("Tempo de execução: " + duration.TotalSeconds + " segundos"); //357seg ?? 9min
 
+        int i1=0;
         foreach (Point val in results)
         {
-        	Console.WriteLine(val);
+        	Console.WriteLine(i1 + ":" + val.ToString());
+            i1++;
         }
     }
     

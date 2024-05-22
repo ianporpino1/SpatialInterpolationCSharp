@@ -5,7 +5,7 @@ public class SpatialInterpolation
 {
     public static List<Point> InverseDistanceWeighting(List<Point> known, List<Point> unknown, double power)
     {
-        List<Point> interpolatedPoints = new List<Point>();
+        List<Point> interpolatedPoints = new List<Point>(unknown.Count);
         foreach (Point u in unknown)
         {
             double sumWeights = 0.0;
@@ -17,8 +17,9 @@ public class SpatialInterpolation
                 sumWeights += weight;
                 sumWeightedValues += weight * k.Z;
             }
-            Point p = new Point(u.X, u.Y, sumWeightedValues / sumWeights);
-            interpolatedPoints.Add(p);
+
+            u.Z = sumWeightedValues / sumWeights;
+            interpolatedPoints.Add(u);
         }
         return interpolatedPoints;
     }
