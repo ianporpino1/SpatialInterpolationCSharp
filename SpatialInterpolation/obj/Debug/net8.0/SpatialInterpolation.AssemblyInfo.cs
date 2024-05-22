@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SpatialInterpolation")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+deadec2c8855a444064a59fd97dd19b742df2115")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c2b78a94a9243b151d030815c26ee69cab13c174")]
 [assembly: System.Reflection.AssemblyProductAttribute("SpatialInterpolation")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SpatialInterpolation")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

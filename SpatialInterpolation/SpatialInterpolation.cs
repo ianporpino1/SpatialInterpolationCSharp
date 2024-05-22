@@ -3,22 +3,23 @@ using System.Collections.Generic;
 
 public class SpatialInterpolation
 {
-    public static Func<Point, Point> InverseDistanceWeightingFunction(List<Point> knownPoints, double power)
+    public static List<Point> InverseDistanceWeighting(List<Point> known, List<Point> unknown, double power)
     {
-        return u =>
+        List<Point> interpolatedPoints = new List<Point>();
+        foreach (Point u in unknown)
         {
             double sumWeights = 0.0;
             double sumWeightedValues = 0.0;
-
-            foreach (var k in knownPoints)
+            foreach (Point k in known)
             {
-                double distance = Math.Sqrt(Math.Pow(k.X - u.X, 2) + Math.Pow(k.Y - u.Y, 2));
-                double weight = 1 / Math.Pow(distance, power);
+                double distance = Math.Sqrt( ((k.X - u.X) * (k.X - u.X) ) + ((k.Y - u.Y) * (k.Y - u.Y)) );
+                double weight = 1.0 / Math.Pow(distance, power);
                 sumWeights += weight;
                 sumWeightedValues += weight * k.Z;
             }
             u.Z = sumWeightedValues / sumWeights;
-            return u;
-        };
+            interpolatedPoints.Add(u);
+        }
+        return interpolatedPoints;
     }
 }

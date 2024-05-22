@@ -18,9 +18,33 @@ class Program
 
         ReadPointsFromFile(fileUnknownPoints, unknown_points, false);
 
-        var results = unknown_points.AsParallel()
-            .Select(SpatialInterpolation.InverseDistanceWeightingFunction(known_points, 2.0))
-            .ToList();
+        int numberOfTasks = Environment.ProcessorCount;
+        var tasks = new List<Task<List<Point>>>();
+        
+        int totalPoints = unknown_points.Count;
+        int pointsPerTask = totalPoints / numberOfTasks;
+        int extraPoints = totalPoints % numberOfTasks;
+
+        int startIndex = 0;
+        for (int i = 0; i < numberOfTasks; i++)
+        {
+            int endIndex = startIndex + pointsPerTask;
+            if (i < extraPoints)
+            {
+                endIndex++;
+            }
+
+            List<Point> subUnknown = unknown_points.GetRange(startIndex, endIndex - startIndex);
+            
+
+            tasks.Add(Task.Run(() => SpatialInterpolation.InverseDistanceWeighting(known_points, subUnknown, 2.0)));
+
+            startIndex = endIndex;
+        }
+        
+        Task.WhenAll(tasks).Wait();
+        
+        var results = tasks.SelectMany(t => t.Result).ToList();
         
         DateTime endTime = DateTime.Now;
         TimeSpan duration = endTime - startTime;
