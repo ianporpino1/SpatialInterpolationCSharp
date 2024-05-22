@@ -1,13 +1,16 @@
 ﻿
 
 using System.Collections.Concurrent;
+using System.Diagnostics;
 
 class Program
 {
     static void Main(string[] args)
     {
         
-        DateTime startTime = DateTime.Now;
+        Stopwatch stopwatch = new Stopwatch();
+
+        stopwatch.Start();
 
         string fileKnownPoints = "data/known_points.csv";
         List<Point> known_points = new List<Point>();
@@ -46,10 +49,9 @@ class Program
         
         var results = tasks.SelectMany(t => t.Result).ToList();
         
-        DateTime endTime = DateTime.Now;
-        TimeSpan duration = endTime - startTime;
+        stopwatch.Stop();
 
-        Console.WriteLine("Tempo de execução: " + duration.TotalSeconds + " segundos"); 
+        Console.WriteLine("Tempo de execução: " + stopwatch.Elapsed + " segundos"); 
 
         int i1=0;
         foreach (Point val in results)

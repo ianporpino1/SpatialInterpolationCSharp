@@ -13,7 +13,7 @@ public class SpatialInterpolation
             foreach (Point k in known)
             {
                 double distance = Math.Sqrt( ((k.X - u.X) * (k.X - u.X) ) + ((k.Y - u.Y) * (k.Y - u.Y)) );
-                double weight = 1.0 / Math.Pow(distance, power);
+                double weight = 1.0 / Pow(distance, power);
                 sumWeights += weight;
                 sumWeightedValues += weight * k.Z;
             }
@@ -21,5 +21,26 @@ public class SpatialInterpolation
             interpolatedPoints.Add(u);
         }
         return interpolatedPoints;
+    }
+    
+    
+    
+    
+    
+    private static double Pow(double baseNumber, double exponent)
+    {
+        double result = 1;
+
+        for (int i = 0; i < Math.Abs(exponent); i++)
+        {
+            result *= baseNumber;
+        }
+
+        if (exponent < 0)
+        {
+            result = 1 / result;
+        }
+
+        return result;
     }
 }
