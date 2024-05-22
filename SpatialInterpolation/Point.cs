@@ -2,7 +2,7 @@
 {
     public double X { get; }
     public double Y { get; }
-    public double Z { get; }
+    public double Z { get; set;}
 
     public Point(double x, double y, double z)
     {

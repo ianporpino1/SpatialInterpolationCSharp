@@ -17,8 +17,9 @@ public class SpatialInterpolation
                 sumWeights += weight;
                 sumWeightedValues += weight * k.Z;
             }
-            Point p = new Point(u.X, u.Y, sumWeightedValues / sumWeights);
-            interpolatedPoints.Add(p);
+
+            u.Z = sumWeightedValues / sumWeights;
+            interpolatedPoints.Add(u);
         }
         return interpolatedPoints;
     }
