@@ -18,33 +18,17 @@ class Program
 
         ReadPointsFromFile(fileUnknownPoints, unknown_points, false);
 
-        int numberOfTasks = Environment.ProcessorCount;
-        var tasks = new List<Task<List<Point>>>();
-        
-        int totalPoints = unknown_points.Count;
-        int pointsPerTask = totalPoints / numberOfTasks;
-        int extraPoints = totalPoints % numberOfTasks;
+        List<Point> results = new List<Point>();
 
-        int startIndex = 0;
-        for (int i = 0; i < numberOfTasks; i++)
+        Parallel.ForEach(unknown_points, uPoint =>
         {
-            int endIndex = startIndex + pointsPerTask;
-            if (i < extraPoints)
+            var interpolatedPoint = SpatialInterpolation.InverseDistanceWeighting(known_points, uPoint, 2.0);
+            lock (results)
             {
-                endIndex++;
+                results.Add(interpolatedPoint);
             }
+        });
 
-            List<Point> subUnknown = unknown_points.GetRange(startIndex, endIndex - startIndex);
-            
-
-            tasks.Add(Task.Run(() => SpatialInterpolation.InverseDistanceWeighting(known_points, subUnknown, 2.0)));
-
-            startIndex = endIndex;
-        }
-        
-        Task.WhenAll(tasks).Wait();
-        
-        var results = tasks.SelectMany(t => t.Result).ToList();
         
         DateTime endTime = DateTime.Now;
         TimeSpan duration = endTime - startTime;
