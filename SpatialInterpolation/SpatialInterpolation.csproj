@@ -21,4 +21,8 @@
     <EmbeddedResource Remove="data\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Include="bin\Debug\net8.0\data\unknown_points.csv" />
+  </ItemGroup>
+
 </Project>
